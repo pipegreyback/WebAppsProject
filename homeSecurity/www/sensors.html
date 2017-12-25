@@ -51,22 +51,22 @@
 			<div class="container center col s8 push-s2 pull-s2">
 				<h3 class="brown-text">Control de Luces</h3>
 				<div class="col s8 push-s2 pull-s2">
-					<h5 class="amber-text text-lighten-1">Pasillo</h5>
+					<h5 class="amber-text text-lighten-1">Escalera</h5>
 					<div class="switch">
 						<label>
           Off
-          <input type="checkbox">
+          <input type="checkbox" id="escalera_led">
           <span class="lever"></span>
           On
         </label>
 					</div>
 				</div>
 				<div class="col s8 push-s2 pull-s2">
-					<h5 class="amber-text text-lighten-1">Cocina</h5>
+					<h5 class="amber-text text-lighten-1">Garage</h5>
 					<div class="switch">
 						<label>
           Off
-          <input type="checkbox">
+          <input type="checkbox" id="garage_led">
           <span class="lever"></span>
           On
         </label>
@@ -77,21 +77,10 @@
 					<div class="switch">
 						<label>
 					Off
-					<input type="checkbox">
+					<input type="checkbox" id="dormitorio_led">
 					<span class="lever"></span>
 					On
 				</label>
-					</div>
-				</div>
-				<div class="col s8 push-s2 pull-s2">
-					<h5 class="amber-text text-lighten-1">Entrada</h5>
-					<div class="switch">
-						<label>
-          Off
-          <input type="checkbox">
-          <span class="lever"></span>
-          On
-        </label>
 					</div>
 				</div>
 			</div>
@@ -104,7 +93,7 @@
 					<div class="switch">
 						<label>
 				Cerrar
-				<input type="checkbox">
+				<input type="checkbox" id="portonPuerta">
 				<span class="lever"></span>
 				Abrir
 			</label>
@@ -144,11 +133,54 @@
 
 
 <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <script src="/js/init.js"></script>
 <script src="/js/app.js"></script>
+<script type="text/javascript">
+	var device;
 
+	window.onload = function() {
+		console.log('Setting up socket connections:');
+
+		// We use the robot nsp (namespace) to connect to one of the devices
+		// in this case the led we added in our cylon robot code
+		whiteLed = io('http://192.168.1.35:3000/api/robots/rosie/devices/white');
+		redLed = io('http://192.168.1.35:3000/api/robots/rosie/devices/red');
+		greenLed = io('http://192.168.1.35:3000/api/robots/rosie/devices/green');
+		servo = io('http://192.168.1.35:3000/api/robots/rosie/devices/servo');
+	}
+	$("#dormitorio_led").click(function(){
+		if($("#dormitorio_led").prop("checked")){
+			whiteLed.emit('turn_on');
+		}else{
+			whiteLed.emit('turn_off');
+		}
+	});
+	$("#escalera_led").click(function(){
+		if($("#escalera_led").prop("checked")){
+			greenLed.emit('turn_on');
+		}else{
+			greenLed.emit('turn_off');
+		}
+	});
+	$("#garage_led").click(function(){
+		if($("#garage_led").prop("checked")){
+			redLed.emit('turn_on');
+		}else{
+			redLed.emit('turn_off');
+		}
+	});
+	$("#portonPuerta").click(function(){
+		if($("#dormitorio_led").prop("checked")){
+			servo.emit('abrir');
+		}else{
+			servo.emit('cerrar');
+		}
+	});
+
+</script>
 
 
 </html>
