@@ -1,106 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+      	<title>Home Security</title>
+      	<!-- CSS  -->
+        <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </head>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-	<title>Whome 56</title>
+    <body>
+      <div class="app">
+        <div id="deviceready" class="blink">
+          <center>
+            <div class="section"></div>
+            <h5 class="brown-text">Por favor, ingresa en tu cuenta</h5>
+            <div class="section"></div>
+            <div class="container">
+              <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+                <form class="col s12" method="" action="">
+                  <div class='row'>
+                  <div class='col s12'></div>
+                  </div>
+                  <div class='row'>
+                    <div class='input-field col s12'>
+                      <input class='validate' type='text' name='username' id='username' />
+                      <label for='username'>Ingresa tu nombre de usuario</label>
+                    </div>
+                  </div>
+                  <br/>
+                  <center>
+                    <div class='row'>
+                      <div id="login-button">
+                        <a href="sensors.html" class="btn-large waves-effect waves-light amber ligthen-1">Ingresar</a>
+                      </div>
+                      </br>
+                      <div id="no-auth">
+                        <label> Tarjeta equivocada, intenta denuevo </label>
+                      </div>
+                    </div>
+                  </center>
+                </form>
+              </div>
+            </div>
+          </center>
+        </div>
+      </div>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+    </body>
 
-	<!-- CSS  -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	<link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-	<nav class="brown" role="navigation">
-		<div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img class="responsive-img" src="/img/whome.png" style="height:1.8em;"/></a>
-
-
-			<ul id="nav-mobile" class="side-nav">
-				<li><a href="login.html">Iniciar</a></li>
-			</ul>
-			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-		</div>
-	</nav>
-</head>
-
-<main>
-	<div class="section no-pad-bot" id="index-banner">
-	<div class="container">
-		<br><br>
-		<h1 class="header center amber-text text-lighten-1">Home Security</h1>
-		<div class="row center">
-			<h5 class="header col s12 light">Una aplicación revolucionaria para proteger el hogar</h5>
-		</div>
-		<div class="row center">
-			<a href="login.html" id="download-button" class="btn-large waves-effect waves-light amber ligthen-1">Iniciar</a>
-		</div>
-		<br><br>
-
-	</div>
-</div>
-
-<div class="container">
-	<div class="section">
-
-		<!--   Icon Section   -->
-		<div class="row">
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-					<h5 class="center">Rapido interacción con el hogar</h5>
-
-					<p class="light">De facil instalación, revisa tu hogar al instante!.</p>
-				</div>
-			</div>
-
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center brown-text"><i class="material-icons">group</i></h2>
-					<h5 class="center">Pensado en la familia</h5>
-
-					<p class="light">Protege a tus seres queridos, y aprovecha la comodidad de tu hogar!.</p>
-				</div>
-			</div>
-
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-					<h5 class="center">Integracion constante</h5>
-					<p class="light">Estamos constantemente trabajando para integrar nuevos dispositivos de tu hogar!.</p>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	<br><br>
-</div>
-
-</main>
-
-		<footer class="page-footer amber lighten-1">
-			<div class="container">
-				<div class="row">
-					<div class="col l6 s12">
-						<h5 class="white-text">Whome 56</h5>
-						<p class="brown-text">Estudiantes de ingeniería, ambiciosos por dar soluciones tecnológicas a problemas de toda índole. Viviendo el 2017, pero pensando en el 3017 - ¿Para qué perder horas hombre en tareas que pueden automatizarse?</p>
-
-
-					</div>
-				</div>
-			</div>
-			<div class="footer-copyright">
-				<div class="container">
-					Made by <a class="brown-text" href="https://www.youtube.com/watch?v=aKJc1sqtyDM">Beetle!</a>
-				</div>
-			</div>
-		</footer>
-
-
-		<!--  Scripts-->
-		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-		<script src="/js/init.js"></script>
-		<script src="/js/app.js"></script>
-
-
+    <footer class="page-footer amber lighten-1">
+      <div class="container">
+    	  <div class="row">
+    		  <div class="col l6 s12">
+    			  <h5 class="white-text">Whome 56</h5>
+    				<p class="brown-text">Estudiantes de ingeniería, ambiciosos por dar soluciones tecnológicas a problemas de toda índole. Viviendo el 2017, pero pensando en el 3017 - ¿Para qué perder horas hombre en tareas que pueden automatizarse?</p>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="footer-copyright">
+    	  <div class="container">
+    		  Made by <a class="brown-text" href="https://www.youtube.com/watch?v=aKJc1sqtyDM">Beetle!</a>
+    		</div>
+    	</div>
+    </footer>
 
 </html>

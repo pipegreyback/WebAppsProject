@@ -1,186 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+      	<title>Home Security</title>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-	<title>Whome 56</title>
+      	<!-- CSS  -->
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      	<link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </head>
 
-	<!-- CSS  -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	<link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-	<nav class="brown" role="navigation">
-		<div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img class="responsive-img" src="/img/whome.png" style="height:1.8em;"/></a>
+    <body>
+      <div class="app">
+        <div id="deviceready" class="blink">
+          <div class="row">
+        		<div class="col s12">
+        			<ul class="tabs">
+        				<li class="tab col s3"><a href="#test1">Control de Temperatura</a></li>
+        				<li class="tab col s3"><a class="active" href="#test2">Luces</a></li>
+        				<li class="tab col s3 "><a href="#test3">Garage</a></li>
+        				<li class="tab col s3"><a href="#test4">Camara</a></li>
+        			</ul>
+        		</div>
+        		<div id="test1" class="col s12">
+        			<div class="container center col s8 push-s2 pull-s2">
+        				<div class="section"></div>
+        				<h3 class="brown-text">Control de Temperatura</h3>
+        				<h5 class="amber-text text-lighten-1">Temperatura actual: 22°C</h5>
+        				<form action="#">
+        					<p class="range-field">
+        						<input type="range" id="test5" min="15" max="35" />
+        					</p>
+        				</form>
+        				<button class="btn waves-effect waves-light amber brown" type="submit" name="action">Cambiar Temperatura
+        						<i class="material-icons right">ac_unit</i>
+        				</button>
+        			</div>
+        		</div>
+        		<div id="test2" class="col s12">
+        			<div class="container center col s8 push-s2 pull-s2">
+        				<h3 class="brown-text">Control de Luces</h3>
+        				<div class="col s8 push-s2 pull-s2">
+        					<h5 class="amber-text text-lighten-1">Escalera</h5>
+        					<div class="switch">
+        						<label>
+                      Off
+                      <input type="checkbox" id="escalera_led">
+                      <span class="lever"></span>
+                      On
+                    </label>
+        					</div>
+        				</div>
+        				<div class="col s8 push-s2 pull-s2">
+        					<h5 class="amber-text text-lighten-1">Garage</h5>
+        					<div class="switch">
+        						<label>
+                      Off
+                      <input type="checkbox" id="garage_led">
+                      <span class="lever"></span>
+                      On
+                    </label>
+        					</div>
+        				</div>
+        				<div class="col s8 push-s2 pull-s2">
+        					<h5 class="amber-text text-lighten-1">Dormitorio</h5>
+        					<div class="switch">
+        						<label>
+        					    Off
+        					    <input type="checkbox" id="dormitorio_led">
+        					    <span class="lever"></span>
+        					    On
+        				   </label>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div id="test3" class="col s12">
+        			<div class="container center col s8 push-s2 pull-s2">
+        				<h3 class="brown-text">Garage</h3>
+        				<div class="col s8 push-s2 pull-s2">
+        					<h5 class="amber-text text-lighten-1">Porton</h5>
+        					<div class="switch">
+        						<label>
+        				      Cerrar
+        				      <input type="checkbox" id="portonPuerta">
+        				      <span class="lever"></span>
+        				      Abrir
+        			     </label>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div id="test4" class="col s12">
+        			<div class="container center col s8 push-s2 pull-s2">
+        				<h3 class="brown-text">Cámara</h3>
+        				<div class="col s8 push-s2 pull-s2">
+        					<img class="responsive-img" src="/img/camera.jpg" alt="">
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+      </div>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script type="text/javascript">
+    	 var device;
+       window.onload = function() {
+    		console.log('Setting up socket connections:');
 
+    		// We use the robot nsp (namespace) to connect to one of the devices
+    		// in this case the led we added in our cylon robot code
+    		whiteLed = io('http://10.2.110.122:3000/api/robots/rosie/devices/white');
+    		redLed = io('http://10.2.110.122:3000/api/robots/rosie/devices/red');
+    		greenLed = io('http://10.2.110.122:3000/api/robots/rosie/devices/green');
+    		servo = io('http://10.2.110.122:3000/api/robots/rosie/devices/servo');
+    	 }
+    	 $("#dormitorio_led").click(function(){
+    	   if($("#dormitorio_led").prop("checked")){
+    		  whiteLed.emit('turn_on');
+    		 }else{
+    			whiteLed.emit('turn_off');
+    		 }
+    	 });
+    	 $("#escalera_led").click(function(){
+    	   if($("#escalera_led").prop("checked")){
+    		   greenLed.emit('turn_on');
+    		 }else{
+    			 greenLed.emit('turn_off');
+    		 }
+    	 });
+    	 $("#garage_led").click(function(){
+    		 if($("#garage_led").prop("checked")){
+    			 redLed.emit('turn_on');
+    		 }else{
+    			 redLed.emit('turn_off');
+    		 }
+    	 });
+    	 $("#portonPuerta").click(function(){
+    		 if($("#dormitorio_led").prop("checked")){
+    			 servo.emit('abrir');
+    		 }else{
+    			 servo.emit('cerrar');
+    		 }
+    	 });
+      </script>
+    </body>
 
-			<ul id="nav-mobile" class="side-nav">
-				<li><a href="#">Navbar Link</a></li>
-			</ul>
-			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-		</div>
-	</nav>
-</head>
-
-<main>
-	<div class="row">
-		<div class="col s12">
-			<ul class="tabs">
-				<li class="tab col s3"><a href="#test1">Control de Temperatura</a></li>
-				<li class="tab col s3"><a class="active" href="#test2">Luces</a></li>
-				<li class="tab col s3 "><a href="#test3">Garage</a></li>
-				<li class="tab col s3"><a href="#test4">Camara</a></li>
-			</ul>
-		</div>
-		<div id="test1" class="col s12">
-			<div class="container center col s8 push-s2 pull-s2">
-				<div class="section"></div>
-				<h3 class="brown-text">Control de Temperatura</h3>
-				<h5 class="amber-text text-lighten-1">Temperatura actual: 22°C</h5>
-				<form action="#">
-					<p class="range-field">
-						<input type="range" id="test5" min="15" max="35" />
-					</p>
-				</form>
-				<button class="btn waves-effect waves-light amber brown" type="submit" name="action">Cambiar Temperatura
-						<i class="material-icons right">ac_unit</i>
-					</button>
-			</div>
-		</div>
-		<div id="test2" class="col s12">
-			<div class="container center col s8 push-s2 pull-s2">
-				<h3 class="brown-text">Control de Luces</h3>
-				<div class="col s8 push-s2 pull-s2">
-					<h5 class="amber-text text-lighten-1">Escalera</h5>
-					<div class="switch">
-						<label>
-          Off
-          <input type="checkbox" id="escalera_led">
-          <span class="lever"></span>
-          On
-        </label>
-					</div>
-				</div>
-				<div class="col s8 push-s2 pull-s2">
-					<h5 class="amber-text text-lighten-1">Garage</h5>
-					<div class="switch">
-						<label>
-          Off
-          <input type="checkbox" id="garage_led">
-          <span class="lever"></span>
-          On
-        </label>
-					</div>
-				</div>
-				<div class="col s8 push-s2 pull-s2">
-					<h5 class="amber-text text-lighten-1">Dormitorio</h5>
-					<div class="switch">
-						<label>
-					Off
-					<input type="checkbox" id="dormitorio_led">
-					<span class="lever"></span>
-					On
-				</label>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="test3" class="col s12">
-			<div class="container center col s8 push-s2 pull-s2">
-				<h3 class="brown-text">Garage</h3>
-				<div class="col s8 push-s2 pull-s2">
-					<h5 class="amber-text text-lighten-1">Porton</h5>
-					<div class="switch">
-						<label>
-				Cerrar
-				<input type="checkbox" id="portonPuerta">
-				<span class="lever"></span>
-				Abrir
-			</label>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="test4" class="col s12">
-			<div class="container center col s8 push-s2 pull-s2">
-				<h3 class="brown-text">Cámara</h3>
-				<div class="col s8 push-s2 pull-s2">
-					<img class="responsive-img" src="/img/camera.jpg" alt="">
-				</div>
-				</div>
-		</div>
-	</div>
-
-</main>
-
-<footer class="page-footer amber lighten-1">
-	<div class="container">
-		<div class="row">
-			<div class="col l6 s12">
-				<h5 class="white-text">Whome 56</h5>
-				<p class="brown-text">Estudiantes de ingeniería, ambiciosos por dar soluciones tecnológicas a problemas de toda índole. Viviendo el 2017, pero pensando en el 3017 - ¿Para qué perder horas hombre en tareas que pueden automatizarse?</p>
-
-
-			</div>
-		</div>
-	</div>
-	<div class="footer-copyright">
-		<div class="container">
-			Made by <a class="brown-text" href="https://www.youtube.com/watch?v=aKJc1sqtyDM">Beetle!</a>
-		</div>
-	</div>
-</footer>
-
-
-<!--  Scripts-->
-<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script src="/js/init.js"></script>
-<script src="/js/app.js"></script>
-<script type="text/javascript">
-	var device;
-
-	window.onload = function() {
-		console.log('Setting up socket connections:');
-
-		// We use the robot nsp (namespace) to connect to one of the devices
-		// in this case the led we added in our cylon robot code
-		whiteLed = io('http://192.168.1.35:3000/api/robots/rosie/devices/white');
-		redLed = io('http://192.168.1.35:3000/api/robots/rosie/devices/red');
-		greenLed = io('http://192.168.1.35:3000/api/robots/rosie/devices/green');
-		servo = io('http://192.168.1.35:3000/api/robots/rosie/devices/servo');
-	}
-	$("#dormitorio_led").click(function(){
-		if($("#dormitorio_led").prop("checked")){
-			whiteLed.emit('turn_on');
-		}else{
-			whiteLed.emit('turn_off');
-		}
-	});
-	$("#escalera_led").click(function(){
-		if($("#escalera_led").prop("checked")){
-			greenLed.emit('turn_on');
-		}else{
-			greenLed.emit('turn_off');
-		}
-	});
-	$("#garage_led").click(function(){
-		if($("#garage_led").prop("checked")){
-			redLed.emit('turn_on');
-		}else{
-			redLed.emit('turn_off');
-		}
-	});
-	$("#portonPuerta").click(function(){
-		if($("#dormitorio_led").prop("checked")){
-			servo.emit('abrir');
-		}else{
-			servo.emit('cerrar');
-		}
-	});
-
-</script>
-
-
+    <footer class="page-footer amber lighten-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Whome 56</h5>
+            <p class="brown-text">Estudiantes de ingeniería, ambiciosos por dar soluciones tecnológicas a problemas de toda índole. Viviendo el 2017, pero pensando en el 3017 - ¿Para qué perder horas hombre en tareas que pueden automatizarse?</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          Made by <a class="brown-text" href="https://www.youtube.com/watch?v=aKJc1sqtyDM">Beetle!</a>
+        </div>
+      </div>
+    </footer>
 </html>
